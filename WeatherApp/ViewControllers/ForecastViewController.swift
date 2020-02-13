@@ -12,6 +12,9 @@ import CoreLocation
 class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var refreshButton : UIButton!
+    @IBOutlet weak var noLocatonSign: NoLocationAccessView!
+    @IBOutlet weak var loadingSign: UIActivityIndicatorView!
+    @IBOutlet weak var weatherNotLoadedSign: NoDataView!
     var locationManager: CLLocationManager!
     var location: CLLocation!
     var forecast: Forecast!
@@ -37,20 +40,22 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
         if let loc = locations.first {
             if(self.location == nil){
                 self.location = loc
-                getWeather()
+                locationManager.stopUpdatingLocation()
+                updateWeather()
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
-            print("no permission")
+            noLocatonSign.isHidden = false
+            loadingSign.isHidden = true
         } else if (status == CLAuthorizationStatus.authorizedWhenInUse) {
             print("got permission")
         }
     }
     
-    private func getWeather() {
+    private func updateWeather() {
         let path = "http://api.openweathermap.org/data/2.5/forecast?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=1868b8202cdf01a3a646241316dbd62b&units=metric"
         
         var request = URLRequest(url: URL(string: path)!)
@@ -64,7 +69,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
                 self.forecast = try decoder.decode(Forecast.self, from: data!)
                 print(self.forecast!)
             } catch {
-                print(error)
+                self.weatherNotLoadedSign.isHidden = false
             }
         })
 
@@ -72,7 +77,8 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func refresh() {
-        getWeather()
+        self.location = nil
+        locationManager.startUpdatingLocation()
     }
 
 }

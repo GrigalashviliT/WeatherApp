@@ -13,6 +13,9 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var noLocationSign: NoLocationAccessView!
+    @IBOutlet weak var loadingSign: UIActivityIndicatorView!
+    @IBOutlet weak var weatherNotLoadedSign: NoDataView!
     var locationManager: CLLocationManager!
     var location: CLLocation!
     var todayWeather: TodayWeather!
@@ -38,20 +41,22 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
         if let loc = locations.first {
             if(self.location == nil){
                 self.location = loc
-                getWeather()
+                locationManager.stopUpdatingLocation()
+                updateWeather()
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
-            print("no permission")
+            noLocationSign.isHidden = false
+            loadingSign.isHidden = true
         } else if (status == CLAuthorizationStatus.authorizedWhenInUse) {
-            print("got permission")
+            print("got permisson")
         }
     }
     
-    private func getWeather() {
+    private func updateWeather() {
         let path = "http://api.openweathermap.org/data/2.5/weather?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=1868b8202cdf01a3a646241316dbd62b&units=metric"
         
         var request = URLRequest(url: URL(string: path)!)
@@ -65,7 +70,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
                 self.todayWeather = try decoder.decode(TodayWeather.self, from: data!)
                 print(self.todayWeather!)
             } catch {
-                print("error")
+                self.weatherNotLoadedSign.isHidden = false
             }
         })
 
@@ -73,7 +78,8 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func refresh() {
-        getWeather()
+        self.location = nil
+        locationManager.startUpdatingLocation()
     }
     
     @IBAction func share() {

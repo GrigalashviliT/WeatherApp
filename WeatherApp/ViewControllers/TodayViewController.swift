@@ -83,7 +83,10 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func share() {
-        print("share")
+       if let link = NSURL(string: "https://openweathermap.org") {
+           let activityVC = UIActivityViewController(activityItems: [link], applicationActivities: nil)
+           self.present(activityVC, animated: true, completion: nil)
+       }
     }
 
 }

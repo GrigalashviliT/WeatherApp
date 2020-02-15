@@ -23,6 +23,7 @@
 		27C9184F23F1D428006E099C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C9184D23F1D428006E099C /* LaunchScreen.storyboard */; };
 		27C9185723F1D8DC006E099C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C9185623F1D8DC006E099C /* TodayViewController.swift */; };
 		27C9185923F1D98E006E099C /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C9185823F1D98E006E099C /* ForecastViewController.swift */; };
+		27FBFC9023F8294200FBBB63 /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27FBFC8F23F8294100FBBB63 /* Icon-App-83.5x83.5@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		27C9185023F1D428006E099C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27C9185623F1D8DC006E099C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		27C9185823F1D98E006E099C /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		27FBFC8F23F8294100FBBB63 /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-83.5x83.5@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				27C9184B23F1D428006E099C /* Assets.xcassets */,
 				27C9184D23F1D428006E099C /* LaunchScreen.storyboard */,
 				27C9185023F1D428006E099C /* Info.plist */,
+				27FBFC8F23F8294100FBBB63 /* Icon-App-83.5x83.5@2x.png */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C0000B23F806E300A83CF5 /* LocationDeniedView.xib in Resources */,
+				27FBFC9023F8294200FBBB63 /* Icon-App-83.5x83.5@2x.png in Resources */,
 				2767333323F5C340003A1940 /* NoLocationView.xib in Resources */,
 				27C9184F23F1D428006E099C /* LaunchScreen.storyboard in Resources */,
 				27C9184C23F1D428006E099C /* Assets.xcassets in Resources */,

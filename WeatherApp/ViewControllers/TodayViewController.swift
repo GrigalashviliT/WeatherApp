@@ -33,7 +33,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationManager.requestWhenInUseAuthorization()
         
         refreshingInfo()
-        
         updateLocation()
     }
     
@@ -46,11 +45,11 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        
         if let loc = locations.first {
             if(self.location == nil){
                 self.location = loc
-                locationManager.stopUpdatingLocation()
-                
                 let weatherLoaded = updateWeather()
                 if(weatherLoaded) {
                     infoLoaded()
@@ -59,7 +58,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
                 }
             }
         } else {
-            locationManager.stopUpdatingLocation()
             errorWhileLoadingLocation()
         }
     }
@@ -119,7 +117,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = false
         
-        refreshButton.isEnabled = false
+        refreshButton.isEnabled = true
         shareButton.isEnabled = false
     }
     
@@ -129,7 +127,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
         
-        refreshButton.isEnabled = false
+        refreshButton.isEnabled = true
         shareButton.isEnabled = false
     }
     
@@ -149,14 +147,13 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     
     func requireLocation() {
         refreshingInfo()
-        
+        location = nil
         updateLocation()
     }
     
     @IBAction func refresh() {
         refreshingInfo()
-        
-        self.location = nil
+        location = nil
         locationManager.startUpdatingLocation()
     }
     

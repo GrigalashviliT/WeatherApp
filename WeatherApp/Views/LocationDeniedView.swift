@@ -1,14 +1,14 @@
 //
-//  NoLocationAccessView.swift
+//  LocationDeniedView.swift
 //  WeatherApp
 //
-//  Created by Tornike Grigalashvili on 2/13/20.
+//  Created by Tornike Grigalashvili on 2/15/20.
 //  Copyright © 2020 Tornike Grigalashvili. All rights reserved.
 //
 
 import UIKit
 
-class NoLocationAccessView: UIView {
+class LocationDeniedView: UIView {
     
     @IBOutlet var contentView: UIView!
 
@@ -23,7 +23,7 @@ class NoLocationAccessView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("NoLocationAccessView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("LocationDeniedView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

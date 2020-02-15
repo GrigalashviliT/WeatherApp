@@ -9,11 +9,12 @@
 import UIKit
 import CoreLocation
 
-class ForecastViewController: UIViewController, CLLocationManagerDelegate {
+class ForecastViewController: UIViewController, CLLocationManagerDelegate, ControllingProtocol {
     
     @IBOutlet weak var refreshButton : UIButton!
-    @IBOutlet weak var noLocatonSign: NoLocationAccessView!
     @IBOutlet weak var loadingSign: UIActivityIndicatorView!
+    @IBOutlet weak var locationDeniedSign: LocationDeniedView!
+    @IBOutlet weak var noLocationSign: NoLocationView!
     @IBOutlet weak var weatherNotLoadedSign: NoDataView!
     var locationManager: CLLocationManager!
     var location: CLLocation!
@@ -22,8 +23,15 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        weatherNotLoadedSign.delegate = self
+        noLocationSign.delegate = self
+        
+        loadingSign.isHidden = true
+        
         locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
+        
+        refreshingInfo()
         
         updateLocation()
     }
@@ -41,21 +49,28 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
             if(self.location == nil){
                 self.location = loc
                 locationManager.stopUpdatingLocation()
-                updateWeather()
+                
+                let weatherLoaded = updateWeather()
+                if(weatherLoaded) {
+                    infoLoaded()
+                } else {
+                    errorWhileLoadingWeather()
+                }
             }
+        } else {
+            locationManager.stopUpdatingLocation()
+            errorWhileLoadingLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
-            noLocatonSign.isHidden = false
-            loadingSign.isHidden = true
-        } else if (status == CLAuthorizationStatus.authorizedWhenInUse) {
-            print("got permission")
+            locationNotSupportedOrNonAccessable()
         }
     }
     
-    private func updateWeather() {
+    private func updateWeather() -> Bool {
+        var success = true
         let path = "http://api.openweathermap.org/data/2.5/forecast?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=1868b8202cdf01a3a646241316dbd62b&units=metric"
         
         var request = URLRequest(url: URL(string: path)!)
@@ -69,14 +84,72 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate {
                 self.forecast = try decoder.decode(Forecast.self, from: data!)
                 print(self.forecast!)
             } catch {
-                self.weatherNotLoadedSign.isHidden = false
+                success = false
             }
         })
 
         task.resume()
+        return success
+    }
+    
+    private func locationNotSupportedOrNonAccessable() {
+        loadingSign.isHidden = true
+        locationDeniedSign.isHidden = false
+        noLocationSign.isHidden = true
+        weatherNotLoadedSign.isHidden = true
+        
+        refreshButton.isEnabled = false
+    }
+    
+    private func errorWhileLoadingLocation() {
+        loadingSign.isHidden = true
+        locationDeniedSign.isHidden = true
+        noLocationSign.isHidden = false
+        weatherNotLoadedSign.isHidden = true
+        
+        refreshButton.isEnabled = false
+    }
+    
+    private func errorWhileLoadingWeather() {
+        loadingSign.isHidden = true
+        locationDeniedSign.isHidden = true
+        noLocationSign.isHidden = true
+        weatherNotLoadedSign.isHidden = false
+        
+        refreshButton.isEnabled = false
+    }
+    
+    private func refreshingInfo() {
+        loadingSign.isHidden = false
+        locationDeniedSign.isHidden = true
+        noLocationSign.isHidden = true
+        weatherNotLoadedSign.isHidden = true
+        
+        refreshButton.isEnabled = false
+    }
+    
+    private func infoLoaded() {
+        loadingSign.isHidden = true
+        locationDeniedSign.isHidden = true
+        noLocationSign.isHidden = true
+        weatherNotLoadedSign.isHidden = true
+        
+        refreshButton.isEnabled = true
+    }
+    
+    func refreshWeather() {
+        refresh()
+    }
+    
+    func requireLocation() {
+        refreshingInfo()
+        
+        updateLocation()
     }
     
     @IBAction func refresh() {
+        refreshingInfo()
+        
         self.location = nil
         locationManager.startUpdatingLocation()
     }

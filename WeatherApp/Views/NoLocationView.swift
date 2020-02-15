@@ -1,5 +1,5 @@
 //
-//  NoDataView.swift
+//  NoLocationView.swift
 //  WeatherApp
 //
 //  Created by Tornike Grigalashvili on 2/13/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoDataView: UIView {
+class NoLocationView: UIView {
     
     @IBOutlet var contentView: UIView!
     var delegate: ControllingProtocol!
@@ -24,7 +24,7 @@ class NoDataView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("NoDataView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("NoLocationView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -32,8 +32,8 @@ class NoDataView: UIView {
         self.isHidden = true
     }
     
-    @IBAction func refresh() {
-        self.delegate.refreshWeather()
+    @IBAction func requestLocation() {
+        self.delegate.requireLocation()
     }
-    
+
 }

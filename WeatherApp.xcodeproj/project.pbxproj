@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2767333323F5C340003A1940 /* NoLocationAccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2767333123F5C340003A1940 /* NoLocationAccessView.xib */; };
-		2767333523F5CBCE003A1940 /* NoLocationAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2767333423F5CBCE003A1940 /* NoLocationAccessView.swift */; };
+		2767333323F5C340003A1940 /* NoLocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2767333123F5C340003A1940 /* NoLocationView.xib */; };
+		2767333523F5CBCE003A1940 /* NoLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2767333423F5CBCE003A1940 /* NoLocationView.swift */; };
 		2767333823F5D0BB003A1940 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2767333623F5D0BB003A1940 /* NoDataView.swift */; };
 		2767333923F5D0BB003A1940 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2767333723F5D0BB003A1940 /* NoDataView.xib */; };
+		27C0000723F7FEC000A83CF5 /* ControlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0000623F7FEC000A83CF5 /* ControlingProtocol.swift */; };
+		27C0000A23F806E300A83CF5 /* LocationDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0000823F806E300A83CF5 /* LocationDeniedView.swift */; };
+		27C0000B23F806E300A83CF5 /* LocationDeniedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27C0000923F806E300A83CF5 /* LocationDeniedView.xib */; };
 		27C384D423F5A7D900746AA3 /* TodayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C384D323F5A7D900746AA3 /* TodayWeather.swift */; };
 		27C384D623F5AAB400746AA3 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C384D523F5AAB400746AA3 /* Forecast.swift */; };
 		27C9184323F1D426006E099C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C9184223F1D426006E099C /* AppDelegate.swift */; };
@@ -23,10 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2767333123F5C340003A1940 /* NoLocationAccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLocationAccessView.xib; sourceTree = "<group>"; };
-		2767333423F5CBCE003A1940 /* NoLocationAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLocationAccessView.swift; sourceTree = "<group>"; };
+		2767333123F5C340003A1940 /* NoLocationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLocationView.xib; sourceTree = "<group>"; };
+		2767333423F5CBCE003A1940 /* NoLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLocationView.swift; sourceTree = "<group>"; };
 		2767333623F5D0BB003A1940 /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		2767333723F5D0BB003A1940 /* NoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		27C0000623F7FEC000A83CF5 /* ControlingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlingProtocol.swift; sourceTree = "<group>"; };
+		27C0000823F806E300A83CF5 /* LocationDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeniedView.swift; sourceTree = "<group>"; };
+		27C0000923F806E300A83CF5 /* LocationDeniedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationDeniedView.xib; sourceTree = "<group>"; };
 		27C384D323F5A7D900746AA3 /* TodayWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayWeather.swift; sourceTree = "<group>"; };
 		27C384D523F5AAB400746AA3 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		27C9183F23F1D426006E099C /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,10 +60,12 @@
 		2767332F23F5C2F9003A1940 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2767333423F5CBCE003A1940 /* NoLocationAccessView.swift */,
-				2767333123F5C340003A1940 /* NoLocationAccessView.xib */,
+				2767333423F5CBCE003A1940 /* NoLocationView.swift */,
+				2767333123F5C340003A1940 /* NoLocationView.xib */,
 				2767333623F5D0BB003A1940 /* NoDataView.swift */,
 				2767333723F5D0BB003A1940 /* NoDataView.xib */,
+				27C0000823F806E300A83CF5 /* LocationDeniedView.swift */,
+				27C0000923F806E300A83CF5 /* LocationDeniedView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -67,6 +75,7 @@
 			children = (
 				27C384D323F5A7D900746AA3 /* TodayWeather.swift */,
 				27C384D523F5AAB400746AA3 /* Forecast.swift */,
+				27C0000623F7FEC000A83CF5 /* ControlingProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,7 +179,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2767333323F5C340003A1940 /* NoLocationAccessView.xib in Resources */,
+				27C0000B23F806E300A83CF5 /* LocationDeniedView.xib in Resources */,
+				2767333323F5C340003A1940 /* NoLocationView.xib in Resources */,
 				27C9184F23F1D428006E099C /* LaunchScreen.storyboard in Resources */,
 				27C9184C23F1D428006E099C /* Assets.xcassets in Resources */,
 				27C9184A23F1D426006E099C /* Main.storyboard in Resources */,
@@ -191,8 +201,10 @@
 				27C384D623F5AAB400746AA3 /* Forecast.swift in Sources */,
 				27C384D423F5A7D900746AA3 /* TodayWeather.swift in Sources */,
 				2767333823F5D0BB003A1940 /* NoDataView.swift in Sources */,
+				27C0000A23F806E300A83CF5 /* LocationDeniedView.swift in Sources */,
 				27C9184523F1D426006E099C /* SceneDelegate.swift in Sources */,
-				2767333523F5CBCE003A1940 /* NoLocationAccessView.swift in Sources */,
+				27C0000723F7FEC000A83CF5 /* ControlingProtocol.swift in Sources */,
+				2767333523F5CBCE003A1940 /* NoLocationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

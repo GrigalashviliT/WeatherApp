@@ -11,8 +11,8 @@ import CoreLocation
 
 class TodayViewController: UIViewController, CLLocationManagerDelegate, ControllingProtocol {
     
-    @IBOutlet weak var refreshButton: UIButton!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var loadingSign: UIActivityIndicatorView!
     @IBOutlet weak var locationDeniedSign: LocationDeniedView!
     @IBOutlet weak var noLocationSign: NoLocationView!
@@ -158,10 +158,8 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     }
     
     @IBAction func share() {
-       if let link = NSURL(string: "https://openweathermap.org") {
-           let activityVC = UIActivityViewController(activityItems: [link], applicationActivities: nil)
-           self.present(activityVC, animated: true, completion: nil)
-       }
+        let activityVC = UIActivityViewController(activityItems: ["text"], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
     }
 
 }

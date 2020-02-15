@@ -15,22 +15,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy6-zl-JgT">
-                                <rect key="frame" x="151.33333333333334" y="20" width="111.33333333333334" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-xS-1Qv">
-                                <rect key="frame" x="20" y="20" width="21.666666666666671" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" image="arrow.clockwise" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="refresh" destination="iY5-1M-mhd" eventType="touchUpInside" id="hh8-TB-4OP"/>
-                                </connections>
-                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-OM-AWz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Forecast" id="8Gz-2g-9lW">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="NXE-iQ-BX8">
+                                            <connections>
+                                                <action selector="refresh" destination="iY5-1M-mhd" id="hAG-pI-ohx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Mnl-nO-COs">
                                 <rect key="frame" x="182" y="343" width="50" height="50"/>
                                 <constraints>
@@ -67,15 +66,14 @@
                         <constraints>
                             <constraint firstItem="Rwb-ib-D4m" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="9Fh-MW-w2g"/>
                             <constraint firstItem="kLv-pL-2Qo" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="BDi-Yh-uzE"/>
+                            <constraint firstItem="ea4-OM-AWz" firstAttribute="top" secondItem="eLC-71-ldd" secondAttribute="top" id="KDu-mO-NEE"/>
                             <constraint firstItem="zeO-k6-ncT" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="OKC-Zf-eRK"/>
                             <constraint firstItem="Mnl-nO-COs" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="Oy1-GI-jaD"/>
                             <constraint firstItem="Rwb-ib-D4m" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="Saa-Z9-OgA"/>
                             <constraint firstItem="kLv-pL-2Qo" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="WkL-PX-GzJ"/>
-                            <constraint firstItem="tDq-xS-1Qv" firstAttribute="leading" secondItem="eLC-71-ldd" secondAttribute="leading" constant="20" id="Yqa-rv-rcc"/>
                             <constraint firstItem="Mnl-nO-COs" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="bgP-9I-VZa"/>
-                            <constraint firstItem="tDq-xS-1Qv" firstAttribute="top" secondItem="eLC-71-ldd" secondAttribute="top" constant="20" id="edm-D8-E0p"/>
-                            <constraint firstItem="Sy6-zl-JgT" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="t7V-h9-ocf"/>
-                            <constraint firstItem="Sy6-zl-JgT" firstAttribute="top" secondItem="eLC-71-ldd" secondAttribute="top" constant="20" id="yjP-qI-bpq"/>
+                            <constraint firstItem="ea4-OM-AWz" firstAttribute="trailing" secondItem="eLC-71-ldd" secondAttribute="trailing" id="ePi-Zf-AX4"/>
+                            <constraint firstItem="ea4-OM-AWz" firstAttribute="leading" secondItem="eLC-71-ldd" secondAttribute="leading" id="rRf-sp-5E7"/>
                             <constraint firstItem="zeO-k6-ncT" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="zkO-6j-Nus"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eLC-71-ldd"/>
@@ -85,7 +83,7 @@
                         <outlet property="loadingSign" destination="Mnl-nO-COs" id="g2b-oC-dU2"/>
                         <outlet property="locationDeniedSign" destination="kLv-pL-2Qo" id="uWE-aU-M3n"/>
                         <outlet property="noLocationSign" destination="zeO-k6-ncT" id="0xt-hg-7sS"/>
-                        <outlet property="refreshButton" destination="tDq-xS-1Qv" id="BuV-VF-HdG"/>
+                        <outlet property="refreshButton" destination="NXE-iQ-BX8" id="JsQ-5C-pHB"/>
                         <outlet property="weatherNotLoadedSign" destination="Rwb-ib-D4m" id="z3O-aq-s3X"/>
                     </connections>
                 </viewController>
@@ -101,32 +99,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36Q-LU-DlQ">
-                                <rect key="frame" x="167" y="20" width="80" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3N-UE-Cda">
-                                <rect key="frame" x="20" y="20" width="22" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" image="arrow.clockwise" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="refresh" destination="NjD-hZ-c8A" eventType="touchUpInside" id="ww6-dd-vXl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeA-sf-ak7">
-                                <rect key="frame" x="371" y="20" width="23" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" image="square.and.arrow.up" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="share" destination="NjD-hZ-c8A" eventType="touchUpInside" id="C6w-7q-apq"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="bPI-o0-Joy">
                                 <rect key="frame" x="182" y="343" width="50" height="50"/>
                                 <constraints>
@@ -158,21 +130,38 @@
                                     <constraint firstAttribute="width" constant="300" id="WnX-iO-9kT"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlK-Gm-Or1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Today" id="Wql-bN-7ko">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="uan-vh-uRn">
+                                            <connections>
+                                                <action selector="refresh" destination="NjD-hZ-c8A" id="Ar9-FV-mLc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" id="mC8-n9-frF">
+                                            <connections>
+                                                <action selector="share" destination="NjD-hZ-c8A" id="Nea-5i-sns"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="z3N-UE-Cda" firstAttribute="leading" secondItem="Nyj-5M-AUn" secondAttribute="leading" constant="20" id="062-0x-Z6S"/>
                             <constraint firstItem="eJ8-CF-N1f" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="DYb-aN-vLk"/>
+                            <constraint firstItem="vlK-Gm-Or1" firstAttribute="leading" secondItem="Nyj-5M-AUn" secondAttribute="leading" id="Fk5-tc-hCB"/>
                             <constraint firstItem="bPI-o0-Joy" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="Gy2-av-tQQ"/>
                             <constraint firstItem="bPI-o0-Joy" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="HrU-D6-KQa"/>
+                            <constraint firstItem="vlK-Gm-Or1" firstAttribute="trailing" secondItem="Nyj-5M-AUn" secondAttribute="trailing" id="IuR-ea-uQA"/>
                             <constraint firstItem="VOh-JM-nVc" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="OjM-dg-e0I"/>
-                            <constraint firstItem="EeA-sf-ak7" firstAttribute="top" secondItem="Nyj-5M-AUn" secondAttribute="top" constant="20" id="R6W-gj-aCa"/>
-                            <constraint firstItem="z3N-UE-Cda" firstAttribute="top" secondItem="Nyj-5M-AUn" secondAttribute="top" constant="20" id="Spo-Fo-P2G"/>
-                            <constraint firstItem="Nyj-5M-AUn" firstAttribute="trailing" secondItem="EeA-sf-ak7" secondAttribute="trailing" constant="20" id="bw6-Lf-2A6"/>
-                            <constraint firstItem="36Q-LU-DlQ" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="cuP-oy-qGt"/>
                             <constraint firstItem="bl6-9F-8lL" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="kFV-Gd-IZN"/>
+                            <constraint firstItem="vlK-Gm-Or1" firstAttribute="top" secondItem="Nyj-5M-AUn" secondAttribute="top" id="mYn-qa-Qtv"/>
                             <constraint firstItem="eJ8-CF-N1f" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="qbp-WF-OBG"/>
-                            <constraint firstItem="36Q-LU-DlQ" firstAttribute="top" secondItem="Nyj-5M-AUn" secondAttribute="top" constant="20" id="tdy-Fa-Ri0"/>
                             <constraint firstItem="bl6-9F-8lL" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="wrh-hH-mdU"/>
                             <constraint firstItem="VOh-JM-nVc" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="wxf-cg-3Fv"/>
                         </constraints>
@@ -183,8 +172,8 @@
                         <outlet property="loadingSign" destination="bPI-o0-Joy" id="ecE-9v-f7n"/>
                         <outlet property="locationDeniedSign" destination="VOh-JM-nVc" id="QrO-fa-HjN"/>
                         <outlet property="noLocationSign" destination="bl6-9F-8lL" id="Juz-O7-tT5"/>
-                        <outlet property="refreshButton" destination="z3N-UE-Cda" id="KDm-z3-yBf"/>
-                        <outlet property="shareButton" destination="EeA-sf-ak7" id="2FG-qy-m4c"/>
+                        <outlet property="refreshButton" destination="uan-vh-uRn" id="JFV-Vr-OMT"/>
+                        <outlet property="shareButton" destination="mC8-n9-frF" id="pWL-YR-cvF"/>
                         <outlet property="weatherNotLoadedSign" destination="eJ8-CF-N1f" id="Nuu-G4-ij7"/>
                     </connections>
                 </viewController>
@@ -212,7 +201,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="clock" catalog="system" width="64" height="60"/>
         <image name="clock.fill" catalog="system" width="64" height="60"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>

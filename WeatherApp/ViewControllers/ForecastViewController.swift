@@ -11,7 +11,7 @@ import CoreLocation
 
 class ForecastViewController: UIViewController, CLLocationManagerDelegate, ControllingProtocol {
     
-    @IBOutlet weak var refreshButton : UIButton!
+    @IBOutlet weak var refreshButton : UIBarButtonItem!
     @IBOutlet weak var loadingSign: UIActivityIndicatorView!
     @IBOutlet weak var locationDeniedSign: LocationDeniedView!
     @IBOutlet weak var noLocationSign: NoLocationView!

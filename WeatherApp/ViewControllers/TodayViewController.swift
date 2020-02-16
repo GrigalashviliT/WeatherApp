@@ -158,7 +158,19 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     }
     
     @IBAction func share() {
-        let activityVC = UIActivityViewController(activityItems: ["text"], applicationActivities: nil)
+        let weatherText = """
+        Today's weather in \(todayWeather.name), \(todayWeather.sys.country):
+        description: \(todayWeather.weather.first!.main)
+        temperature: \(todayWeather.main.temp)°C
+        max temperature: \(todayWeather.main.tempMax)°C
+        min temperature: \(todayWeather.main.tempMin)°C
+        cloudiness: \(todayWeather.clouds.all)%
+        humidity: \(todayWeather.main.humidity)mm
+        pressure: \(todayWeather.main.pressure)hPa
+        wind speed: \(todayWeather.wind.speed)km/h
+        wind degree: \(todayWeather.wind.deg)°
+        """
+        let activityVC = UIActivityViewController(activityItems: [weatherText], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
 

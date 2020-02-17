@@ -150,9 +150,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kf6-ID-u93" customClass="TodayWeatherView" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="87" y="304" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Kf6-ID-u93" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="7TG-IL-NYW"/>
                             <constraint firstItem="eJ8-CF-N1f" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="DYb-aN-vLk"/>
                             <constraint firstItem="vlK-Gm-Or1" firstAttribute="leading" secondItem="Nyj-5M-AUn" secondAttribute="leading" id="Fk5-tc-hCB"/>
                             <constraint firstItem="bPI-o0-Joy" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="Gy2-av-tQQ"/>
@@ -164,6 +169,7 @@
                             <constraint firstItem="eJ8-CF-N1f" firstAttribute="centerX" secondItem="UXg-9R-Pc4" secondAttribute="centerX" id="qbp-WF-OBG"/>
                             <constraint firstItem="bl6-9F-8lL" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="wrh-hH-mdU"/>
                             <constraint firstItem="VOh-JM-nVc" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="wxf-cg-3Fv"/>
+                            <constraint firstItem="Kf6-ID-u93" firstAttribute="centerY" secondItem="UXg-9R-Pc4" secondAttribute="centerY" id="zdY-d3-BNH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nyj-5M-AUn"/>
                     </view>
@@ -174,6 +180,7 @@
                         <outlet property="noLocationSign" destination="bl6-9F-8lL" id="Juz-O7-tT5"/>
                         <outlet property="refreshButton" destination="uan-vh-uRn" id="JFV-Vr-OMT"/>
                         <outlet property="shareButton" destination="mC8-n9-frF" id="pWL-YR-cvF"/>
+                        <outlet property="weatherInfoView" destination="Kf6-ID-u93" id="TNB-31-svI"/>
                         <outlet property="weatherNotLoadedSign" destination="eJ8-CF-N1f" id="Nuu-G4-ij7"/>
                     </connections>
                 </viewController>

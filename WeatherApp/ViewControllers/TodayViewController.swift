@@ -17,6 +17,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     @IBOutlet weak var locationDeniedSign: LocationDeniedView!
     @IBOutlet weak var noLocationSign: NoLocationView!
     @IBOutlet weak var weatherNotLoadedSign: NoDataView!
+    @IBOutlet weak var weatherInfoView: TodayWeatherView!
     var locationManager: CLLocationManager!
     var location: CLLocation!
     var todayWeather: TodayWeather!
@@ -50,12 +51,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         if let loc = locations.first {
             if(self.location == nil){
                 self.location = loc
-                let weatherLoaded = updateWeather()
-                if(weatherLoaded) {
-                    infoLoaded()
-                } else {
-                    errorWhileLoadingWeather()
-                }
+                updateWeather()
             }
         } else {
             errorWhileLoadingLocation()
@@ -68,8 +64,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         }
     }
     
-    private func updateWeather() -> Bool {
-        var success = true
+    private func updateWeather() {
         let path = "http://api.openweathermap.org/data/2.5/weather?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=1868b8202cdf01a3a646241316dbd62b&units=metric"
         
         var request = URLRequest(url: URL(string: path)!)
@@ -81,14 +76,39 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
             do {
                 let decoder = JSONDecoder()
                 self.todayWeather = try decoder.decode(TodayWeather.self, from: data!)
-                print(self.todayWeather!)
+                self.getWeatherIcon()
+//                DispatchQueue.main.async {
+//                    self.weatherInfoView.fill(todayWeather: self.todayWeather)
+//                    self.infoLoaded()
+//                }
             } catch {
-                success = false
+                DispatchQueue.main.async {
+                    self.errorWhileLoadingWeather()
+                }
             }
         })
 
         task.resume()
-        return success
+    }
+    
+    private func getWeatherIcon() {
+        let path = "http://openweathermap.org/img/wn/\(self.todayWeather.weather.first!.icon)@2x.png"
+        
+        var request = URLRequest(url: URL(string: path)!)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                DispatchQueue.main.async {
+                    self.weatherInfoView.fill(todayWeather: self.todayWeather, imageData: data!)
+                    self.infoLoaded()
+                }
+            }
+        })
+
+        task.resume()
     }
     
     private func locationNotSupportedOrNonAccessable() {
@@ -96,6 +116,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationDeniedSign.isHidden = false
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        weatherInfoView.isHidden = true
         
         refreshButton.isEnabled = false
         shareButton.isEnabled = false
@@ -106,6 +127,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = false
         weatherNotLoadedSign.isHidden = true
+        weatherInfoView.isHidden = true
         
         refreshButton.isEnabled = false
         shareButton.isEnabled = false
@@ -116,6 +138,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = false
+        weatherInfoView.isHidden = true
         
         refreshButton.isEnabled = true
         shareButton.isEnabled = false
@@ -126,6 +149,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        weatherInfoView.isHidden = true
         
         refreshButton.isEnabled = true
         shareButton.isEnabled = false
@@ -136,6 +160,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        weatherInfoView.isHidden = false
         
         refreshButton.isEnabled = true
         shareButton.isEnabled = true
@@ -168,7 +193,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
         humidity: \(todayWeather.main.humidity)mm
         pressure: \(todayWeather.main.pressure)hPa
         wind speed: \(todayWeather.wind.speed)km/h
-        wind degree: \(todayWeather.wind.deg)°
+        wind direction: \(todayWeather.windDirection())
         """
         let activityVC = UIActivityViewController(activityItems: [weatherText], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)

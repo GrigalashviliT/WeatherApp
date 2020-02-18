@@ -77,10 +77,6 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
                 let decoder = JSONDecoder()
                 self.todayWeather = try decoder.decode(TodayWeather.self, from: data!)
                 self.getWeatherIcon()
-//                DispatchQueue.main.async {
-//                    self.weatherInfoView.fill(todayWeather: self.todayWeather)
-//                    self.infoLoaded()
-//                }
             } catch {
                 DispatchQueue.main.async {
                     self.errorWhileLoadingWeather()

@@ -66,7 +66,6 @@ struct Weather: Codable {
 extension TodayWeather {
     func windDirection() -> String {
         let directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
-        print(self.wind.deg)
         let index = Int((self.wind.deg/45)) % 8
         return directions[index]
     }

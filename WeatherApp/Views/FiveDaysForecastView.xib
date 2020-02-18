@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FiveDaysForecastView" customModule="WeatherApp" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="GNQ-ra-OqF"/>
+                <outlet property="fifth" destination="S8r-69-gWh" id="rob-rA-3tQ"/>
+                <outlet property="first" destination="B7n-U4-3A7" id="Ug7-px-DNw"/>
+                <outlet property="fourth" destination="xwn-ZI-4zZ" id="8jG-Hb-Ef1"/>
+                <outlet property="second" destination="ILu-JR-EAE" id="1if-6P-6Wv"/>
+                <outlet property="third" destination="4ef-lY-tyy" id="QKg-1i-5So"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEc-d9-XeL">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWh-Ib-Ix3">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="474"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ArW-qx-PAE">
+                                    <rect key="frame" x="20" y="137" width="374" height="640"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7n-U4-3A7" customClass="DailyForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILu-JR-EAE" customClass="DailyForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="128" width="374" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ef-lY-tyy" customClass="DailyForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="256" width="374" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwn-ZI-4zZ" customClass="DailyForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="384" width="374" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-69-gWh" customClass="DailyForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="512" width="374" height="128"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ArW-qx-PAE" secondAttribute="trailing" constant="20" symbolic="YES" id="Pjj-dq-dRb"/>
+                                <constraint firstAttribute="bottom" secondItem="ArW-qx-PAE" secondAttribute="bottom" id="jsi-TB-xDT"/>
+                                <constraint firstItem="ArW-qx-PAE" firstAttribute="leading" secondItem="QWh-Ib-Ix3" secondAttribute="leading" constant="20" symbolic="YES" id="nWd-D6-OCz"/>
+                                <constraint firstItem="ArW-qx-PAE" firstAttribute="top" secondItem="QWh-Ib-Ix3" secondAttribute="top" constant="20" symbolic="YES" id="nz9-8A-Ltd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="QWh-Ib-Ix3" firstAttribute="leading" secondItem="UHO-Vb-AbH" secondAttribute="leading" id="1os-re-CLG"/>
+                        <constraint firstItem="QWh-Ib-Ix3" firstAttribute="trailing" secondItem="UHO-Vb-AbH" secondAttribute="trailing" id="Q7d-83-oWD"/>
+                        <constraint firstItem="QWh-Ib-Ix3" firstAttribute="width" secondItem="TxU-eN-Tj4" secondAttribute="width" id="fbk-cb-y79"/>
+                        <constraint firstItem="QWh-Ib-Ix3" firstAttribute="bottom" secondItem="UHO-Vb-AbH" secondAttribute="bottom" id="jLx-gG-A7j"/>
+                        <constraint firstItem="QWh-Ib-Ix3" firstAttribute="top" secondItem="UHO-Vb-AbH" secondAttribute="top" id="qpq-g2-FOZ"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="UHO-Vb-AbH"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="TxU-eN-Tj4"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZEc-d9-XeL" secondAttribute="trailing" id="ZhG-Ov-DlF"/>
+                <constraint firstItem="ZEc-d9-XeL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rnB-QD-bPZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZEc-d9-XeL" secondAttribute="bottom" id="uN8-pQ-X27"/>
+                <constraint firstItem="ZEc-d9-XeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uU9-TQ-EB6"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="131.8840579710145" y="143.47826086956522"/>
+        </view>
+    </objects>
+</document>

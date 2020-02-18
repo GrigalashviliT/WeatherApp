@@ -61,11 +61,18 @@
                                     <constraint firstAttribute="width" constant="300" id="t9P-BT-tB7"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3n-iF-ekf" customClass="FiveDaysForecastView" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="638"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="w3n-iF-ekf" firstAttribute="leading" secondItem="eLC-71-ldd" secondAttribute="leading" id="2Q3-NL-Dce"/>
                             <constraint firstItem="Rwb-ib-D4m" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="9Fh-MW-w2g"/>
                             <constraint firstItem="kLv-pL-2Qo" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="BDi-Yh-uzE"/>
+                            <constraint firstItem="eLC-71-ldd" firstAttribute="bottom" secondItem="w3n-iF-ekf" secondAttribute="bottom" constant="5" id="EON-j2-ZxJ"/>
+                            <constraint firstItem="w3n-iF-ekf" firstAttribute="top" secondItem="ea4-OM-AWz" secondAttribute="bottom" symbolic="YES" id="Eaq-QH-mTW"/>
                             <constraint firstItem="ea4-OM-AWz" firstAttribute="top" secondItem="eLC-71-ldd" secondAttribute="top" id="KDu-mO-NEE"/>
                             <constraint firstItem="zeO-k6-ncT" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="OKC-Zf-eRK"/>
                             <constraint firstItem="Mnl-nO-COs" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="Oy1-GI-jaD"/>
@@ -74,12 +81,14 @@
                             <constraint firstItem="Mnl-nO-COs" firstAttribute="centerY" secondItem="5cX-WJ-4TW" secondAttribute="centerY" id="bgP-9I-VZa"/>
                             <constraint firstItem="ea4-OM-AWz" firstAttribute="trailing" secondItem="eLC-71-ldd" secondAttribute="trailing" id="ePi-Zf-AX4"/>
                             <constraint firstItem="ea4-OM-AWz" firstAttribute="leading" secondItem="eLC-71-ldd" secondAttribute="leading" id="rRf-sp-5E7"/>
+                            <constraint firstItem="eLC-71-ldd" firstAttribute="trailing" secondItem="w3n-iF-ekf" secondAttribute="trailing" id="y6D-70-etV"/>
                             <constraint firstItem="zeO-k6-ncT" firstAttribute="centerX" secondItem="5cX-WJ-4TW" secondAttribute="centerX" id="zkO-6j-Nus"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eLC-71-ldd"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Forecast" image="clock" catalog="system" selectedImage="clock.fill" id="KgB-3I-NoH"/>
                     <connections>
+                        <outlet property="forecastInfoView" destination="w3n-iF-ekf" id="hcV-uB-SxS"/>
                         <outlet property="loadingSign" destination="Mnl-nO-COs" id="g2b-oC-dU2"/>
                         <outlet property="locationDeniedSign" destination="kLv-pL-2Qo" id="uWE-aU-M3n"/>
                         <outlet property="noLocationSign" destination="zeO-k6-ncT" id="0xt-hg-7sS"/>
@@ -150,9 +159,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kf6-ID-u93" customClass="TodayWeatherView" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="87" y="304" width="240" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kf6-ID-u93" customClass="TodayWeatherView" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="57" y="193" width="300" height="350"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="C24-Tt-2ka"/>
+                                    <constraint firstAttribute="width" constant="300" id="pDx-Bd-zTd"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

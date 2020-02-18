@@ -16,6 +16,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
     @IBOutlet weak var locationDeniedSign: LocationDeniedView!
     @IBOutlet weak var noLocationSign: NoLocationView!
     @IBOutlet weak var weatherNotLoadedSign: NoDataView!
+    @IBOutlet weak var forecastInfoView: FiveDaysForecastView!
     var locationManager: CLLocationManager!
     var location: CLLocation!
     var forecast: Forecast!
@@ -49,12 +50,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         if let loc = locations.first {
             if(self.location == nil){
                 self.location = loc
-                let weatherLoaded = updateWeather()
-                if(weatherLoaded) {
-                    infoLoaded()
-                } else {
-                    errorWhileLoadingWeather()
-                }
+                updateWeather()
             }
         } else {
             errorWhileLoadingLocation()
@@ -67,8 +63,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         }
     }
     
-    private func updateWeather() -> Bool {
-        var success = true
+    private func updateWeather() {
         let path = "http://api.openweathermap.org/data/2.5/forecast?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&appid=1868b8202cdf01a3a646241316dbd62b&units=metric"
         
         var request = URLRequest(url: URL(string: path)!)
@@ -80,14 +75,18 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
             do {
                 let decoder = JSONDecoder()
                 self.forecast = try decoder.decode(Forecast.self, from: data!)
-                print(self.forecast!)
+                DispatchQueue.main.async {
+                    self.forecastInfoView.fill(forecasts: self.forecast.list)
+                    self.infoLoaded()
+                }
             } catch {
-                success = false
+                DispatchQueue.main.async {
+                    self.errorWhileLoadingWeather()
+                }
             }
         })
 
         task.resume()
-        return success
     }
     
     private func locationNotSupportedOrNonAccessable() {
@@ -95,6 +94,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         locationDeniedSign.isHidden = false
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        forecastInfoView.isHidden = true
         
         refreshButton.isEnabled = false
     }
@@ -104,6 +104,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = false
         weatherNotLoadedSign.isHidden = true
+        forecastInfoView.isHidden = true
         
         refreshButton.isEnabled = false
     }
@@ -113,6 +114,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = false
+        forecastInfoView.isHidden = true
         
         refreshButton.isEnabled = true
     }
@@ -122,6 +124,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        forecastInfoView.isHidden = true
         
         refreshButton.isEnabled = true
     }
@@ -131,6 +134,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
         locationDeniedSign.isHidden = true
         noLocationSign.isHidden = true
         weatherNotLoadedSign.isHidden = true
+        forecastInfoView.isHidden = false
         
         refreshButton.isEnabled = true
     }

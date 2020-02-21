@@ -38,6 +38,10 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     }
     
     private func updateLocation() {
+        if(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied){
+            locationNotSupportedOrNonAccessable()
+        }
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -175,7 +179,7 @@ class TodayViewController: UIViewController, CLLocationManagerDelegate, Controll
     @IBAction func refresh() {
         refreshingInfo()
         location = nil
-        locationManager.startUpdatingLocation()
+        updateLocation()
     }
     
     @IBAction func share() {

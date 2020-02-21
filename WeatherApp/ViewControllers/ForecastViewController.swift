@@ -37,6 +37,10 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
     }
     
     private func updateLocation() {
+        if(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied){
+            locationNotSupportedOrNonAccessable()
+        }
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
@@ -152,7 +156,7 @@ class ForecastViewController: UIViewController, CLLocationManagerDelegate, Contr
     @IBAction func refresh() {
         refreshingInfo()
         location = nil
-        locationManager.startUpdatingLocation()
+        updateLocation()
     }
 
 }
